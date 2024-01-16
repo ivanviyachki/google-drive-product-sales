@@ -1,4 +1,4 @@
-# WooDrive - Sell Digital Products via Google Drive
+# WooDrive - Sell Google Drive Digital Products via WooCommerce
 
 WooDrive is a powerful WooCommerce extension that seamlessly integrates with Google Drive, allowing you to effortlessly sell digital products such as courses, e-books, photos, and more directly from your WooCommerce store.
 
