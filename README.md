@@ -37,15 +37,5 @@ WooDrive is a powerful WooCommerce extension that seamlessly integrates with Goo
 
 3. Activate the plugin from the WordPress admin dashboard.
 
-4. Follow the setup wizard to connect your Google Drive account.
+4. Connect your Google Drive account.
 
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Support
-
-For any issues, questions, or feature requests, please [open an issue](https://github.com/your-repo/issues).
-
-Happy selling with WooDrive!
