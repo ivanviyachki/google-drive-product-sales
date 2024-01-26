@@ -1,0 +1,61 @@
+<?php 
+if ( ! empty( $file_id ) ) {
+
+  $args = array (
+    'post_type'             => array( 'product', 'product_variation' ),
+    'post_status'           => 'publish',
+    'fields'              	=> 'ids',
+    'meta_query'          	=> array(
+      array(
+        'key'       => 'WooDrive_google_drive_file_ids',
+        'value'     => $file_id,
+        'compare'   => 'LIKE'
+      ),
+    ),
+  );
+
+  // The Query
+  $product = new \WP_Query( $args );
+
+  if ( ! empty( $product->posts ) ) {
+
+    $files_data = get_post_meta( $product->posts[0], '_downloadable_files', true );
+
+    foreach( $files_data as $file_data ) { 
+    
+      if ( strpos( $file_data['file'], 'folders' ) &&  strpos( $file_data['file'], $file_id ) ) {
+
+        $upload_dir = wp_upload_dir();
+        $upload_dir_url = $upload_dir['baseurl'] . '/'. \WooDrive\UPLOADS_DIR;
+        $upload_dir_path = $upload_dir['basedir'] . '/'. \WooDrive\UPLOADS_DIR;
+        $file_path =  $upload_dir_path . "/" . $file_id . ".html";
+        $file_url = $upload_dir_url . "/" . $file_id . ".html";
+
+        if ( ! file_exists( $file_path ) ) {
+          exec( "wget -O " . $file_path . " https://drive.google.com/embeddedfolderview?id=" . $file_id . "#list" ); 
+          exec( "sed -i 's#_blank#_self#g' " . $file_path ); 
+          sleep(0.5);
+          exec( "sed -i 's#view?usp=drive_web#preview#g' " . $file_path ); 
+          exec( "sed -i 's#.mp4# #g' " . $file_path ); 
+          exec( "sed -i 's#<meta#<link href='/wp-content/plugins/woodrive-courses/assets/css/folder.css' rel='stylesheet'><meta#g' " . $file_path ); 
+        }
+        $time = time();
+        echo '<iframe src="' . $file_url . '?time=' . $time . '" style="width:100%; height:600px; border:0;"></iframe>';
+
+        break;
+      }  
+
+      if ( ( strpos( $file_data['file'], 'file' ) || strpos( $file_data['file'], 'document' ) ) &&  strpos( $file_data['file'], $file_id ) ) {
+
+        echo '<iframe src="https://drive.google.com/file/d/' . $file_id . '/preview" width="100%" height="600"></iframe>';
+
+        break;
+      }
+
+    }
+  }
+
+  wp_reset_query();
+  wp_reset_postdata();
+}
+?>

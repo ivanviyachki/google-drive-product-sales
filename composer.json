@@ -1,0 +1,14 @@
+{
+    "name": "dev/woodrive",
+    "description": "Sell Google Drive Files with WooCommerce",
+    "require": {
+      "php": ">=7.4",
+      "phpunit/phpunit": "^7",
+        "google/apiclient": "^2.12.1"
+    },
+    "autoload": {
+      "psr-4": {
+        "WooDrive\\": "core/"
+      }
+    }
+}
