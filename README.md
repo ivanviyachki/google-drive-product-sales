@@ -24,18 +24,3 @@ WooDrive is a powerful WooCommerce extension that seamlessly integrates with Goo
 
 5. Start selling digital products with ease!
 
-## Prerequisites
-
-- WooCommerce installed on your WordPress website.
-- A Google Drive account for storing and delivering digital products.
-
-## Installation
-
-1. Download the WooDrive plugin from the [WordPress plugin repository](https://wordpress.org/plugins/woodrive/).
-
-2. Install the plugin on your WordPress site.
-
-3. Activate the plugin from the WordPress admin dashboard.
-
-4. Connect your Google Drive account.
-
